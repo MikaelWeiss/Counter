@@ -13,41 +13,45 @@ struct ContentView: View {
     @State private var color = false
     
     var body: some View {
-        VStack(spacing: 0) {
-            ZStack {
-                Rectangle()
-                    .foregroundColor(Color(#colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)))
-                    .frame(height: 66)
-            }
-            .onTapGesture {
-                playerOne = 0
-                playerTwo = 0
-            }
-            HStack(spacing: 0) {
-                ZStack {
-                    Rectangle()
-                        .foregroundColor(color ? .white : .black)
-                    Text("\(playerOne)")
-                        .foregroundColor(color ? .black : .white)
-                }
-                .onTapGesture {
-                    playerOne += 1
-                    testColor(first: playerOne, second: playerTwo, value: &color)
-                }
-                ZStack {
-                    Rectangle()
-                        .foregroundColor(color ? .black : .white)
-                    Text("\(playerTwo)")
-                        .foregroundColor(color ? .white : .black)
-                }
-                .onTapGesture {
-                    playerTwo += 1
-                    testColor(first: playerOne, second: playerTwo, value: &color)
+        NavigationView {
+            VStack(spacing: 0) {
+                HStack(spacing: 0) {
+                    ZStack {
+                        Rectangle()
+                            .foregroundColor(color ? .white : .black)
+                        Text("\(playerOne)")
+                            .foregroundColor(color ? .black : .white)
+                    }
+                    .onTapGesture {
+                        playerOne += 1
+                        testColor(first: playerOne, second: playerTwo, value: &color)
+                    }
+                    ZStack {
+                        Rectangle()
+                            .foregroundColor(color ? .black : .white)
+                        Text("\(playerTwo)")
+                            .foregroundColor(color ? .white : .black)
+                    }
+                    .onTapGesture {
+                        playerTwo += 1
+                        testColor(first: playerOne, second: playerTwo, value: &color)
+                    }
                 }
             }
+            .font(.system(size: 100, weight: .bold, design: .rounded))
+            .edgesIgnoringSafeArea([.horizontal, .bottom])
+            .navigationBarTitle("Stepper")
+            .navigationBarItems(
+                leading: Button(action: {}, label: {
+                    Text("")
+                }),
+                trailing: Button(action: {
+                    playerOne = 0
+                    playerTwo = 0
+                }, label: {
+                    Text("Reset")
+                }))
         }
-        .font(.system(size: 80, weight: .bold, design: .rounded))
-        .edgesIgnoringSafeArea(.all)
     }
 }
 
