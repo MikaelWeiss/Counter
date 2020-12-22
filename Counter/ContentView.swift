@@ -18,9 +18,14 @@ struct ContentView: View {
                 HStack(spacing: 0) {
                     ZStack {
                         Rectangle()
-                            .foregroundColor(color ? .white : .black)
+                            .foregroundColor(color ? Color(#colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1)) : Color(#colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)))
                         Text("\(playerOne)")
-                            .foregroundColor(color ? .black : .white)
+                            .foregroundColor(color ? .white : .white)
+                        VStack {
+                            Text(color ? "Serve" : "").font(.system(size: 35, weight: .heavy, design: .rounded))
+                                .padding()
+                            Spacer()
+                        }
                     }
                     .onTapGesture {
                         playerOne += 1
@@ -28,9 +33,14 @@ struct ContentView: View {
                     }
                     ZStack {
                         Rectangle()
-                            .foregroundColor(color ? .black : .white)
+                            .foregroundColor(color ? Color(#colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)) : Color(#colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1)))
                         Text("\(playerTwo)")
-                            .foregroundColor(color ? .white : .black)
+                            .foregroundColor(color ? .white : .white)
+                        VStack {
+                            Text(color ? "" : "Serve").font(.system(size: 35, weight: .heavy, design: .rounded))
+                                .padding()
+                            Spacer()
+                        }
                     }
                     .onTapGesture {
                         playerTwo += 1
